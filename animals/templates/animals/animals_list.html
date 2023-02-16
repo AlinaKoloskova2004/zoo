@@ -1,0 +1,20 @@
+{% extends "root.html" %}
+{% load thumbnail %}
+{% block content %}
+<ul class="ps-3 list-unstyled pe-3">
+    {% for animals in animals_list %}
+        <li>
+       <div class="d-inline-flex border" style="padding: 10px 0px 0px 10px;">
+            <img src="{{ animals.img.url }}" width="300px" height="200px" style="object-fit: cover;" class="">
+            <div class="ms-3 mt-0">
+                <a href="{% url 'animals:animals' animals.pk %}" class="d-block ms-3">
+                    <p class="fs-2">{{ animals.kind }}</p>
+                    <p class="fs-2">{{ animals.name }}</p>
+                </a>
+                <p class="ps-3 pt-0 fs-3">{{ animals.text|truncatechars:128 }}</p>
+            </div>
+        </div>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}
